@@ -16,7 +16,7 @@ export class Kavita implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Kavita',
 		name: 'kavita',
-		icon: { light: 'file:kavita.svg', dark: 'file:kavita.svg' },
+		icon: { light: 'file:kavita.svg', dark: 'file:kavita.dark.svg' },
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',

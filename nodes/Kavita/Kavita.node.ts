@@ -61,7 +61,7 @@ export class Kavita implements INodeType {
 				const operation = this.getNodeParameter('operation', i) as string;
 
 				// Step 1: exchange the API key for a JWT.
-				const auth = (await this.helpers.httpRequest({
+				const auth = (await this.helpers.httpRequestWithAuthentication.call(this, 'kavitaApi', {
 					method: 'POST' as IHttpRequestMethods,
 					baseURL,
 					url: '/api/Plugin/authenticate',
@@ -77,7 +77,7 @@ export class Kavita implements INodeType {
 				}
 
 				const call = (url: string, qs?: IDataObject) =>
-					this.helpers.httpRequest({
+					this.helpers.httpRequestWithAuthentication.call(this, 'kavitaApi', {
 						method: 'GET' as IHttpRequestMethods,
 						baseURL,
 						url,

@@ -1,4 +1,9 @@
-import { ICredentialType, INodeProperties } from 'n8n-workflow';
+import {
+	IAuthenticateGeneric,
+	ICredentialTestRequest,
+	ICredentialType,
+	INodeProperties,
+} from 'n8n-workflow';
 
 export class KavitaApi implements ICredentialType {
 	name = 'kavitaApi';
@@ -28,4 +33,23 @@ export class KavitaApi implements ICredentialType {
 			description: 'Kavita API key (User settings → 3rd Party Clients → API Key)',
 		},
 	];
+
+	test: ICredentialTestRequest = {
+		request: {
+			method: 'POST',
+			baseURL: '={{$credentials.baseUrl}}',
+			url: '/api/Plugin/authenticate',
+			qs: {
+				apiKey: '={{$credentials.apiKey}}',
+				pluginName: 'n8n',
+			},
+		},
+	};
+
+	// No transport auth to inject here (handled inside the node); this block
+	// lets the node use httpRequestWithAuthentication.
+	authenticate: IAuthenticateGeneric = {
+		type: 'generic',
+		properties: {},
+	};
 }

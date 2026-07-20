@@ -88,8 +88,8 @@ export class Kavita implements INodeType {
 
 				const handlers: Record<string, () => Promise<unknown>> = {
 					getLibraries: () => call('/api/Library/libraries'),
-					getServerInfo: () => call('/api/Server/server-info'),
-					search: () => call('/api/Search/search', { queryString: this.getNodeParameter('query', i) }),
+					getServerInfo: () => call('/api/Server/server-info-slim'),
+					search: () => call('/api/Search/search', { queryString: this.getNodeParameter('query', i), includeChapterAndFiles: false }),
 				};
 
 				const handler = handlers[operation];
